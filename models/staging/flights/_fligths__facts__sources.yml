@@ -1,0 +1,34 @@
+sources:
+  - name: demo_src
+    tables:
+    - name: boarding_passes
+      description: Посадочные талоны
+      columns:
+        - name: ticket_no
+          description: Номер билета
+        - name: flight_id
+          description: ID рейса
+        - name: boarding_no
+          description: Посадочный номер
+        - name: seat_no
+          description: Номер места
+    - name: flights
+      columns:
+        - name: flight_id
+        - name: flight_no
+        - name: scheduled_departure
+        - name: scheduled_arrival
+        - name: departure_airport
+        - name: arrival_airport
+        - name: "status"
+        - name: aircraft_code
+        - name: actual_departure
+        - name: actual_arrival
+      freshness:
+        warn_after:
+          count: 3
+          period: hour
+        #filter: current_timestamp::date - actual_departure::date < 3
+      loaded_at_field: actual_departure
+    - name: ticket_flights
+    - name: tickets
