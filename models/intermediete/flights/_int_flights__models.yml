@@ -1,0 +1,71 @@
+models:
+  - name: fct_bookings
+    description: Факты бронирования
+    docs: 
+      show: true
+      node_color: red
+    latest_version: 1
+    versions:
+        - v: 1
+    config:
+      contract: {enforced: true}
+    meta:
+      owner: "domanov312@mail.ru"
+      target: yandex
+
+
+    columns:
+      - name: book_ref
+        data_type: bpchar(6)
+      - name: book_date
+        data_type: timestamptz
+      - name: total_amount
+        data_type: numeric(10, 2)
+        constraints: 
+        - type: check
+          expression: "total_amount > 0"
+        tests: 
+          - not_null
+        meta:
+          owner: finance_team
+        quote: true
+
+  - name: fct_ticket_flights
+    description: Факты авиобилетов
+    docs: 
+      #show: true
+      node_color: green
+    meta: 
+      owners_mail: "domanov312@mail.ru"
+    config:
+      contract: {enforced: true}
+    
+    columns: 
+      - name: ticket_no
+        data_type: bpchar(13)
+      - name: flight_id
+        data_type: int4
+        constraints:
+          - type: unique
+      - name: fare_conditions
+        data_type: varchar(10)
+      - name: amount
+        data_type: numeric(10, 2)
+        constraints:
+          - type: check
+            expression: "amount < 0"
+            name: chck_amount
+      - name: boarding_pass_exists
+        data_type: bool
+        description: Признак?
+      - name: boarding_no
+        data_type: int4
+        description: из другой таблицы
+      - name: seat_no
+        data_type: varchar(4)
+        description: из другой таблицы
+      - name: load_date
+        data_type: timestamp
+        description: Техническая дата
+
+
