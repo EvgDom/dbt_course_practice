@@ -22,6 +22,6 @@ from
 where 
     1=1
 {% if is_incremental() %}
-    /*обновляем все данные за последние 3 месяца + все новые записи*/
+    /*обновляем все данные за последние 2 месяца + все новые записи*/
     and scheduled_departure >= (select max(scheduled_departure) from {{ this }}) - interval '2 month'
 {% endif %}
