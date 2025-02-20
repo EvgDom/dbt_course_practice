@@ -1,6 +1,8 @@
 {{
   config(
-    materialized = 'table'
+    materialized = 'incremental',
+    incremental_strategy = 'delete+insert',
+    unique_key = ['flight_id']
     )
 }}
 
@@ -17,4 +19,9 @@ select
     actual_arrival
 from 
     {{ source('demo_src', 'flights') }}
-  
+where 
+    1=1
+{% if is_incremental() %}
+    /*обновляем все данные за последние 3 месяца + все новые записи*/
+    and scheduled_departure >= (select max(scheduled_departure) from {{ this }}) - interval '2 month'
+{% endif %}
