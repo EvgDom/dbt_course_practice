@@ -34,3 +34,7 @@ models:
     # Config indicated by + and applies to all files under models/example/
     example:
       +materialized: view
+# отделение seed`ов в отдельную схему для проекта dbt_course_practice
+seeds:
+  dbt_course_practice:
+  schema: seeds
