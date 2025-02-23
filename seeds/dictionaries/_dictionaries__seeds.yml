@@ -1,0 +1,23 @@
+seeds: 
+  - name: city_region
+    description: Сопоставление регионов и городов
+    config: 
+      column_type:
+        city: varchar(50)
+        region: varchar(50)
+    columns:
+      - name: city
+        tests:
+          - not_null
+          - unique
+
+  - name: airline_employees
+    description: Пассажиров, которые являются сотрудниками авиакомпании
+    config:
+      column_type:
+        id: varchar(50)
+    columns:
+      - name: id
+        tests:
+          - not_null
+          - unique
