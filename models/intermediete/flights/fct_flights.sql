@@ -15,6 +15,6 @@ select
     null::int aircraft_id, /*id*/
     actual_departure,
     actual_arrival,
-    null::timestamp load_date /*тех время загрузки*/
+    now() load_date /*тех время загрузки*/
 from
     {{ ref('src_flights__flights') }}

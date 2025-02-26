@@ -13,10 +13,9 @@ models:
       owner: "domanov312@mail.ru"
       target: yandex
 
-
     columns:
       - name: book_ref
-        data_type: bpchar(6)
+        data_type: bpchar(8)
       - name: book_date
         data_type: timestamptz
       - name: total_amount
@@ -45,16 +44,16 @@ models:
         data_type: bpchar(13)
       - name: flight_id
         data_type: int4
-        constraints:
-          - type: unique
+        # constraints:
+        #   - type: unique #не уникальный!
       - name: fare_conditions
         data_type: varchar(10)
       - name: amount
         data_type: numeric(10, 2)
-        constraints:
-          - type: check
-            expression: "amount < 0"
-            name: chck_amount
+        # constraints:
+        #   - type: check
+        #     expression: "amount < 0"
+        #     name: chck_amount
       - name: boarding_pass_exists
         data_type: bool
         description: Признак?
@@ -67,5 +66,8 @@ models:
       - name: load_date
         data_type: timestamp
         description: Техническая дата
+    constraints:
+      - type: primary_key
+        columns: [ticket_no, flight_id]
 
 
