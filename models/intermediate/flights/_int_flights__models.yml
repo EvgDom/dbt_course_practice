@@ -9,9 +9,7 @@ models:
         - v: 1
     config:
       contract: {enforced: true}
-    meta:
-      owner: "domanov312@mail.ru"
-      target: yandex
+    meta: {owner: "yml_file", target: yandex,  my_meta: new}
 
     columns:
       - name: book_ref
