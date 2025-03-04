@@ -14,6 +14,7 @@ select
     null::int arrival_airport_id, /*id*/
     "status",
     null::int aircraft_id, /*id*/
+    aircraft_code,
     actual_departure,
     actual_arrival,
     now() load_date /*тех время загрузки*/
