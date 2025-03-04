@@ -13,3 +13,6 @@ select
     contact_data
 from
     {{ source('demo_src', 'tickets') }}
+{%- if target.name == 'dev' %}
+limit 100000
+{% endif %}
