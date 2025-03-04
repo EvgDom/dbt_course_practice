@@ -10,6 +10,7 @@ select
     scheduled_departure,
     scheduled_arrival,
     null::int departure_airport_id, /*id*/
+    departure_airport,
     null::int arrival_airport_id, /*id*/
     "status",
     null::int aircraft_id, /*id*/
