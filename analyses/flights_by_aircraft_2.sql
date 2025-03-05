@@ -16,6 +16,11 @@ select
     {%- for aircraft in impotant_aircrafts %}
     sum(case when aircraft_code = '{{ aircraft }}' then 1 else 0 end) as flights_{{ aircraft }}
         {%- if not loop.last %} , {% endif %}
+{#- Variables #}
+--{{ loop.last }}
+--{{ loop['last'] }}
+{#- Filter #}
+--{{ aircraft|title }}
     {%- endfor %}
 from 
     {{ ref('fct_flights') }}
