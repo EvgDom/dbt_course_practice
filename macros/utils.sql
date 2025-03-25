@@ -75,4 +75,17 @@
     {% endif %}
 
 {% endmacro %}
-    
+
+
+{# Макрос по перечислению всех колонок из другой модели #}
+{%- macro show_columns_relation(model_name) %}
+
+    {%- set rel = load_relation(ref(model_name)) %}
+
+    {%- set columns = adapter.get_columns_in_relation( rel ) %}
+
+    {%- for col_name in columns %}
+        {{ col_name.name }} {%- if not loop.last -%} , {% endif %}
+    {%- endfor %}
+
+{%- endmacro %}
