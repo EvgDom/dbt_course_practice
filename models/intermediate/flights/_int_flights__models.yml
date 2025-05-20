@@ -1,7 +1,7 @@
 models:
   - name: fct_bookings
     description: Факты бронирования
-    docs: 
+    docs:
       show: true
       node_color: red
     latest_version: 1
@@ -21,6 +21,8 @@ models:
         constraints: 
         - type: check
           expression: "total_amount > 0"
+      - name: surrogate_key
+        data_type: text
         tests: 
           - not_null
         meta:
@@ -68,4 +70,7 @@ models:
       - type: primary_key
         columns: [ticket_no, flight_id]
 
-
+  - name: fct_flights
+    tests:
+      - dbt_utils.equal_rowcount:
+          compare_model: ref('src_flights__flights')
