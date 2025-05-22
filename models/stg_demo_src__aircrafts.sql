@@ -10,8 +10,8 @@ renamed as (
     select
         aircraft_code,
         model,
-        range
-
+        range--,
+        -- 1 as ss
     from source
 
 )

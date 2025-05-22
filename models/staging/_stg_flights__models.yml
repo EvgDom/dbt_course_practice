@@ -60,3 +60,8 @@ models:
       - name: amount
         data_type: numeric
         description: ""
+  - name: src_flights__flights
+    columns:
+      - name: status
+        # tests:
+        #   - unique
