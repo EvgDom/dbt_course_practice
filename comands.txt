@@ -1,0 +1,23 @@
+1 (1/3) Напишите команду, которая обновит все модели проекта dbt за исключением моделей, содержащихся в папке 
+models/intermediate/fligths (если у вас таклй папки нет, то укажите любую другую)
+
+Команда:
+dbt run --exclude "models/intermediate/flights"
+
+2 (1/3) Напишите команду, которая обновит все элементы проекта (и запустит их тесты) за исключением сида city_region и всех его потомков.
+
+Команда:
+dbt build -s "city_region+"
+
+3 (2/3) Создайте selector, который находит все инкрементальные модели. Напишите команду обновления всех инкрементальных моделей, используя созданный selector.
+
+Команда без selector:
+dbt run -s 'config.materialized:incremental'
+
+Команда c selector:
+dbt run --selector sel_inc_mdls
+
+4 (3/3) Добавьте новое поле со статическим значением в модель stg_flights__seats.
+
+Команда:
+dbt ls -s "state:modified" --state '/c/Users/doman/dbt_course_workdir/state'

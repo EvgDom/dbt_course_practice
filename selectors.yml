@@ -1,5 +1,8 @@
 selectors:
   - name: failed_tests_with_their_models
     definition: '1+result:fail'
+  - name: sel_inc_mdls
+    definition: 'config.materialized:incremental'
+
 
 # dbt build --selector failed_tests_with_their_models --state target
